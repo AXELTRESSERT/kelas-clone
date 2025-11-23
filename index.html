@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clone kelas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fdbb2d;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #fdbb2d;
+        }
+
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #fdbb2d;
+            color: #333;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #ffcc44;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+            font-size: 36px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-box {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .course-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .course-header {
+            padding: 20px;
+            background-color: #1a2a6c;
+            color: white;
+            text-align: center;
+        }
+
+        .course-header h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .course-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fdbb2d;
+        }
+
+        .course-content {
+            padding: 20px;
+        }
+
+        .course-type {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .course-type:last-child {
+            border-bottom: none;
+        }
+
+        .type-name {
+            font-weight: bold;
+            color: #1a2a6c;
+        }
+
+        .type-price {
+            font-weight: bold;
+            color: #b21f1f;
+        }
+
+        .course-benefits {
+            margin-top: 15px;
+        }
+
+        .course-benefits h4 {
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+
+        .benefit-list {
+            list-style-type: none;
+        }
+
+        .benefit-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .benefit-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #1a2a6c;
+            font-weight: bold;
+        }
+
+        .why-cheap {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .info-section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .info-box {
+            margin-bottom: 30px;
+        }
+
+        .info-box h3 {
+            color: #1a2a6c;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .info-item {
+            margin-bottom: 10px;
+            display: flex;
+        }
+
+        .info-label {
+            font-weight: bold;
+            width: 120px;
+            color: #b21f1f;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .skill-tag {
+            background-color: #1a2a6c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">clone class</div>
+                <nav>
+                    <ul>
+                        <li><a href="#courses">kelas</a></li>
+                        <li><a href="#about">tentang</a></li>
+                        <li><a href="#contact">kontak</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>belajar programming dengan harga terjangkau</h1>
+            <p>dapatkan skill programming yang dibutuhkan di era digital dengan metode belajar yang efektif dan biaya yang ramah di kantong</p>
+            <a href="#courses" class="btn">lihat kelas</a>
+        </div>
+    </section>
+
+    <section id="courses" class="section">
+        <div class="container">
+            <h2 class="section-title">kelas yang tersedia</h2>
+            <div class="courses">
+                <!-- JavaScript Course -->
+                <div class="course-box">
+                    <div class="course-header">
+                        <h3>kelas javascript</h3>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-type">
+                            <span class="type-name">public</span>
+                            <span class="type-price">15k</span>
+                        </div>
+                        <div class="course-benefits">
+                            <h4>keuntungan:</h4>
+                            <ul class="benefit-list">
+                                <li>belajar bersama banyak orang</li>
+                                <li>diajarkan dasar-dasar sampai benar-benar bisa</li>
+                            </ul>
+                        </div>
+                        <div class="course-type">
+                            <span class="type-name">private</span>
+                            <span class="type-price">25k</span>
+                        </div>
+                        <div class="course-benefits">
+                            <h4>keuntungan:</h4>
+                            <ul class="benefit-list">
+                                <li>belajar di group khusus dan super private</li>
+                                <li>tetap diajarkan materialnya sampai bisa</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HTML + CSS Course -->
+                <div class="course-box">
+                    <div class="course-header">
+                        <h3>kelas html + css</h3>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-type">
+                            <span class="type-name">public</span>
+                            <span class="type-price">20k</span>
+                        </div>
+                        <div class="course-benefits">
+                            <h4>keuntungan:</h4>
+                            <ul class="benefit-list">
+                                <li>diajarkan di grup public bersama member lain</li>
+                                <li>diajarkan dasar-dasar html, css sampai bisa</li>
+                            </ul>
+                        </div>
+                        <div class="course-type">
+                            <span class="type-name">private</span>
+                            <span class="type-price">30k</span>
+                        </div>
+                        <div class="course-benefits">
+                            <h4>keuntungan:</h4>
+                            <ul class="benefit-list">
+                                <li>diajarkan di grup khusus</li>
+                                <li>bisa atur jam belajar</li>
+                                <li>diajarkan semua material dan dipandu hingga benar-benar bisa</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Python Course -->
+                <div class="course-box">
+                    <div class="course-header">
+                        <h3>kelas python</h3>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-type">
+                            <span class="type-name">harga</span>
+                            <span class="type-price">10k</span>
+                        </div>
+                        <div class="why-cheap">
+                            <h4>kenapa python murah?</h4>
+                            <p>karena itu bahasa paling mudah bisa dibilang dan gampang dipahamin</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C++ & PHP Course -->
+                <div class="course-box">
+                    <div class="course-header">
+                        <h3>kelas c++ & php</h3>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-type">
+                            <span class="type-name">public</span>
+                            <span class="type-price">20k</span>
+                        </div>
+                        <div class="course-benefits">
+                            <h4>keuntungan:</h4>
+                            <ul class="benefit-list">
+                                <li>diajarkan bareng-bareng hal dasar</li>
+                                <li>diberikan project dan diajak project kalo ada waktu luang</li>
+                            </ul>
+                        </div>
+                        <div class="course-type">
+                            <span class="type-name">private</span>
+                            <span class="type-price">25k</span>
+                        </div>
+                        <div class="course-benefits">
+                            <h4>keuntungan:</h4>
+                            <ul class="benefit-list">
+                                <li>sangat rekomend jika anda malu dengan public</li>
+                                <li>tetap diajarkan tetapi anda bisa mengatur waktu luang, belajar dll</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">tentang clone class</h2>
+            <div class="info-section">
+                <div class="info-box">
+                    <h3>information clone</h3>
+                    <div class="info-item">
+                        <span class="info-label">name real:</span>
+                        <span>irfan</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">support:</span>
+                        <span>orang tua</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">skills:</span>
+                        <div class="skills">
+                            <span class="skill-tag">python</span>
+                            <span class="skill-tag">javascript</span>
+                            <span class="skill-tag">html</span>
+                            <span class="skill-tag">css</span>
+                            <span class="skill-tag">c++</span>
+                            <span class="skill-tag">lua</span>
+                            <span class="skill-tag">php</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">email contact:</span>
+                        <span>clonetressert@gmail.com</span>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <h3>tentang website ini</h3>
+                    <p>website ini dibuat untuk memudahkan calon siswa dalam memilih kelas programming yang sesuai dengan kebutuhan dan budget mereka. dengan metode belajar yang fleksibel dan harga yang terjangkau, kami berharap dapat membantu lebih banyak orang menguasai skill programming.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">clone class</div>
+                <div class="contact-info">
+                    <p>email: clonetressert@gmail.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                © clonetressert 2026
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
